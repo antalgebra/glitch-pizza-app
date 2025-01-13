@@ -19,8 +19,6 @@ I reccomend following along with the tutorial by writing the code yourself. If y
 3. Switch to different stages of the tutorial:
    ```bash
    git checkout 1-hello-world    # Basic Express server
-   git checkout 2-static-files   # Serving static files
-   # ... and so on
    ```
 
 4. To start the server, you will need to first install the project dependencies. You can do this by running `npm install` in the terminal from the project directory. This will install the dependencies listed in the `package.json` file.
