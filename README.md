@@ -34,14 +34,13 @@ Each branch has its own README that will:
 
 ## Branches
 
-1. **1-hello-world**: Basic Express server setup (you are here)
-2. **2-static-files**: Serving static HTML files
-3. **3-posting-data**: Posting data to the server and backend validation
-4. **4-templating**: Using template engines (EJS) for dynamic HTML
-5. **5-database**: Connecting to a SQL database
-6. **6-frontend-validation**: Adding frontend validation to the form
-7. **7-route-params**: Route parameters and dynamic routes
-... (more branches to come)
+**1-hello-world**: Basic Express server setup (you are here)  
+**2-static-files**: Serving static HTML files  
+**3-posting-data**: Posting data to the server and backend validation  
+**4-templating**: Using template engines (EJS) for dynamic HTML  
+**5-database**: Connecting to a SQL database  
+**6-frontend-validation**: Adding frontend validation to the form  
+**7-route-params**: Route parameters and dynamic routes  
 
 ---
 
