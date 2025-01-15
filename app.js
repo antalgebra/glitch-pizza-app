@@ -8,6 +8,10 @@ import express from 'express';
 // Create an instance of an Express application
 const app = express();
 
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
+
+
 // Define the port number where our server will listen
 const PORT = 3000;
 
@@ -19,7 +23,7 @@ const PORT = 3000;
  */
 app.get('/', (req, res) => {
     // Send "Hello, World!" as a response to the client
-    res.send('Hello, World!');
+    res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
 
 // Start the server and make it listen on our specified port
