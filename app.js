@@ -11,7 +11,6 @@ const app = express();
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-
 // Define the port number where our server will listen
 const PORT = 3000;
 

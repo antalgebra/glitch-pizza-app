@@ -58,11 +58,23 @@ When you use `express.static('public')`:
 2. Visit `http://localhost:3000` in your browser
 3. You should now see your styled HTML page instead of the previous "Hello, World!" text
 
+## Using Nodemon
+
+Nodemon is a tool that helps you develop Node.js applications by automatically restarting the server when you make changes to the code.
+
+1. Install Nodemon:
+   ```bash
+   npm install nodemon --save-dev
+   ```
+   This will add nodemon to your project's dev  dependencies. Dev dependencies are packages that are only needed for development, such as testing and debugging tools. After you install nodemon, you will see a new section in your `package.json` file called `devDependencies` to track these packages.
+
+2. In the terminal, run `npx nodemon` or  `npx nodemon app.js` to start the server and automatically restart it when you make changes. npx is a tool that allows you to run Node.js packages.
+
 ## Troubleshooting
 
 If your static files aren't loading:
-1. Check that the files are in the correct directories
-2. Make sure file paths in your HTML match your directory structure
+1. Check that the files are in the correct directories.
+2. Make sure file paths in your HTML match your directory structure starting from the public folder.
 3. Verify that `express.static('public')` is before your routes in `app.js`
 
 <br/>
