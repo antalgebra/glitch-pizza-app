@@ -102,6 +102,18 @@ Test it out:
 - Visit http://localhost:3000/admin/orders
 - You should see a JSON array with all your orders, including customer details, order selections, and timestamps
 
+## Troubleshooting
+
+If form submission isn't working:
+- Check that the form's `action` and `method` match your route
+- Verify that all form fields have `name` attributes
+- Make sure the `urlencoded` middleware is before your routes
+
+If pages aren't loading:
+- Check file paths in your `sendFile` calls
+- Verify that HTML files exist in the correct locations
+
+
 <br/>
 
 *Note: This tutorial was created with the help of AI tools.*
