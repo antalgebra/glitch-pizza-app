@@ -36,7 +36,7 @@ Each branch has its own README that will:
 
 **1-hello-world**: Basic Express server setup (you are here)  
 **2-static-files**: Serving static HTML files  
-**3-posting-data** (TODO): Posting data to the server and backend validation  
+**3-posting-data**: Posting data to the server
 **4-templating** (TODO): Using template engines (EJS) for dynamic HTML  
 **5-database** (TODO): Connecting to a SQL database  
 **6-frontend-validation** (TODO): Adding frontend validation to the form  
