@@ -1,81 +1,106 @@
-# Serving Static Files with Express (2-static-files)
+# Posting Form Data (3-posting-data)
 
-In this lesson, we'll modify our Express server to serve HTML pages and static assets (like CSS, images, and client-side JavaScript) instead of just sending plain text responses.
+In this lesson, we'll expand our pizza ordering site to handle form submissions and add multiple pages. We'll learn about:
+- Creating and linking multiple pages
+- Processing form submissions with Express
+- Storing and retrieving data in memory
 
-## Project Structure
+## Adding a Contact Page
 
-First, let's set up our project directories. Create the following folder structure:
-```
-your-project/
-├── public/         # Static assets (CSS, client JS, images)
-│   ├── css/        # Stylesheets
-│   ├── js/         # Client side JavaScript (empty for now)
-│   └── images/     # Images
-├── views/          # Web pages
-│   └── home.html   # Home page
-├── app.js          # Node.js application code
-└── package.json    # Project configuration
-```
+Let's start by adding a simple contact page and organizing our styles better.
 
-## Setting Up Static File Serving
-
-1. First, modify your `app.js` to add static file serving. Add this line before your routes:
+1. Add a new route in app.js:
    ```javascript
-   app.use(express.static('public'));
-   ```
-   This middleware tells Express to automatically serve any files in the 'public' directory. Middleware is code that runs between the request and response. `app.use()` is a method that adds middleware to the Express application and `express.static()` is a middleware function that serves static files.
-
-2. Update the root route to serve an HTML file instead of plain text:
-   ```javascript
-   app.get('/', (req, res) => {
-       res.sendFile(`${import.meta.dirname}/views/home.html`);
+   app.get('/contact', (req, res) => {
+      res.sendFile(`${import.meta.dirname}/views/contact.html`);
    });
-
    ```
-   This route is now serving the `home.html` file in the `views` directory. The `import.meta.dirname` is a special variable that gives us the directory name of the current module. We use this to tell Express where to find the `home.html` file.
 
-3. Add your HTML file in the `views` directory and any CSS files in the `public/css` directory.
-
-4. In your HTML, you can link to CSS files as if they were in the root directory, because Express is serving any files in the 'public' folder:
+2. Create views/contact.html with basic contact information
+3. Update the contact button in home.html to link to the new page:
    ```html
-   <link rel="stylesheet" href="/css/home.css">
+   <a id="contact-button" href="/contact" class="main-button">Contact Us</a>
    ```
 
-## How Static File Serving Works
-
-When you use `express.static('public')`:
-- Any file in the `public` directory becomes accessible via URL
-- For example, `public/css/style.css` is available at `http://localhost:3000/css/style.css`
-- This works automatically for any file type: CSS, JavaScript, images, etc.
-- No need to create separate routes for each static file
-
-## Running the Application
-
-1. Start the server:
-   ```bash
-   node app.js
+4. Let's organize our CSS better by:
+   - Creating base-styles.css for shared styles (body, layout, headers)
+   - Keeping form-specific styles in home.css
+   - Linking both in our HTML files:
+   ```html
+   <link rel="stylesheet" href="css/base-styles.css">
+   <link rel="stylesheet" href="css/home.css">
    ```
-2. Visit `http://localhost:3000` in your browser
-3. You should now see your styled HTML page instead of the previous "Hello, World!" text
 
-## Using Nodemon
+Test it out: Visit http://localhost:3000 and click "Contact Us". You'll notice that the URL changes to http://localhost:3000/contact because we added that new route to serve the contact page. You should see your contact page with the base styles applied.
 
-Nodemon is a tool that helps you develop Node.js applications by automatically restarting the server when you make changes to the code.
+## Setting Up Form Processing
 
-1. Install Nodemon:
-   ```bash
-   npm install nodemon --save-dev
+Now let's make our order form actually do something. First, add middleware to parse form data in app.js:
+
+```javascript
+app.use(express.urlencoded({ extended: true }));
+```
+
+This middleware allows Express to read form submissions and store them in `req.body`. For example, form data like `fname=John&lname=Doe` becomes `{ fname: 'John', lname: 'Doe' }`.
+
+## Storing Orders
+
+Add this line to app.js to store our orders in memory:
+
+```javascript
+const orders = [];
+```
+
+This creates an array to hold orders temporarily. They'll be lost when the server restarts - in a real app, you'd use a database.
+
+## Handling Form Submissions
+
+1. Add this route to app.js:
+   ```javascript
+   app.post('/submit-order', (req, res) => {
+      // Get form data from request body
+      const order = {
+         fname: req.body.fname,
+         lname: req.body.lname,
+         email: req.body.email,
+         method: req.body.method,
+         toppings: req.body.toppings,
+         size: req.body.size,
+         timestamp: new Date()
+      };
+      
+      // Save order to our array
+      orders.push(order);
+      
+      // Send confirmation page
+      res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+   });
    ```
-   This will add nodemon to your project's dev  dependencies. Dev dependencies are packages that are only needed for development, such as testing and debugging tools. After you install nodemon, you will see a new section in your `package.json` file called `devDependencies` to track these packages.
 
-2. In the terminal, run `npx nodemon` or  `npx nodemon app.js` to start the server and automatically restart it when you make changes. npx is a tool that allows you to run Node.js packages.
+2. Create views/confirmation.html - a simple page thanking the user for their order
 
-## Troubleshooting
+3. Update the form in home.html to submit to our new endpoint:
+   ```html
+   <form action="/submit-order" method="post">
+   ```
 
-If your static files aren't loading:
-1. Check that the files are in the correct directories.
-2. Make sure file paths in your HTML match your directory structure starting from the public folder.
-3. Verify that `express.static('public')` is before your routes in `app.js`
+Test the order flow:
+1. Fill out and submit the order form
+2. You should see the confirmation page
+
+## 5. Adding Admin Access
+
+Add a route to view all orders:
+```javascript
+app.get('/admin/orders', (req, res) => {
+    res.json(orders);
+});
+```
+
+Test it out:
+- Place a few orders
+- Visit http://localhost:3000/admin/orders
+- You should see a JSON array with all your orders, including customer details, order selections, and timestamps
 
 <br/>
 
