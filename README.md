@@ -71,13 +71,18 @@ This creates an array to hold orders temporarily. They'll be lost when the serve
       
       // Save order to our array
       orders.push(order);
+
+      // Log the orders array to the console
+      console.log(orders);
       
       // Send confirmation page
       res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
    });
    ```
 
-2. Create views/confirmation.html - a simple page thanking the user for their order
+   When we submit the form, the data is stored in the request's body variable (`req.body`). We can then access this data in our route function. We create an order object with the form data `const order = { ... }` and push it to the orders array `orders.push(order)`. Then we send the user back the confirmation page `res.sendFile( ... )`.
+
+2. Create views/confirmation.html - a simple page thanking the user for their order.
 
 3. Update the form in home.html to submit to our new endpoint:
    ```html
@@ -85,22 +90,23 @@ This creates an array to hold orders temporarily. They'll be lost when the serve
    ```
 
 Test the order flow:
-1. Fill out and submit the order form
-2. You should see the confirmation page
+1. Fill out and submit the order form.
+2. You should see the confirmation page.
+3. You should also see the order added to the orders array in the server console (in the VS Code terminal). This means we've successfully sent data from the client to the server.
 
 ## 5. Adding Admin Access
 
 Add a route to view all orders:
 ```javascript
 app.get('/admin/orders', (req, res) => {
-    res.json(orders);
+    res.send(orders);
 });
 ```
 
 Test it out:
 - Place a few orders
 - Visit http://localhost:3000/admin/orders
-- You should see a JSON array with all your orders, including customer details, order selections, and timestamps
+- You should see a list of all your orders, including customer details, order selections, and timestamps
 
 ## Troubleshooting
 
@@ -111,7 +117,7 @@ If form submission isn't working:
 
 If pages aren't loading:
 - Check file paths in your `sendFile` calls
-- Verify that HTML files exist in the correct locations
+- Verify that HTML files exist in the expected locations
 
 
 <br/>

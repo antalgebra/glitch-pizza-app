@@ -46,13 +46,28 @@ app.post('/submit-order', (req, res) => {
     // Save order to our array
     orders.push(order);
     
+    // Log the order to the console
+    console.log(orders);
+
     // Send confirmation page
     res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
 });
 
 // Admin route to view all orders
+/*
 app.get('/admin/orders', (req, res) => {
-    res.json(orders);
+    res.send(orders);
+});
+*/
+
+// We could even generate the html for the admin page.
+app.get('/admin/orders', (req, res) => {
+    let html = '<h1>Orders</h1><ul>';
+    for (const order of orders) {
+        html += `<li>${order.fname} ${order.lname} - ${order.email} - ${order.method} - ${order.toppings} - ${order.size} - ${order.timestamp}</li>`;
+    }
+    html += '</ul>';
+    res.send(html);
 });
 
 // Start the server and make it listen on our specified port
