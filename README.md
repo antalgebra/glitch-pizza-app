@@ -1,6 +1,6 @@
 # Learning Node.js and Express
 
-# Learning Node.js and Express 🚀
+# Learning Node.js and Express
 
 This repository is designed as a step-by-step tutorial for learning **Node.js and Express**. Each branch represents a new concept or feature, building upon the previous branches.
 
@@ -10,7 +10,7 @@ This repository is designed as a step-by-step tutorial for learning **Node.js an
 
 ---
 
-## 🚀 How to Use This Repository
+## How to Use This Repository
 
 I recommend following along with the tutorial by **writing the code yourself**. If you get stuck, you can always refer back to the code in this repository.
 
