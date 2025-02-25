@@ -1,7 +1,5 @@
 # Learning Node.js and Express
 
-# Learning Node.js and Express
-
 This repository is designed as a step-by-step tutorial for learning **Node.js and Express**. Each branch represents a new concept or feature, building upon the previous branches.
 
 [![Remix on Glitch](https://img.shields.io/badge/remix%20on-Glitch-purple?logo=glitch)](https://glitch.com/edit/#!/your-glitch-project-name)
