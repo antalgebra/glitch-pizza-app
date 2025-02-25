@@ -1,5 +1,25 @@
 # Learning Node.js and Express
 
+# Learning Node.js and Express 🚀
+
+This repository is designed as a step-by-step tutorial for learning **Node.js and Express**. Each branch represents a new concept or feature, building upon the previous branches.
+
+[![Remix on Glitch](https://img.shields.io/badge/remix%20on-Glitch-purple?logo=glitch)](https://glitch.com/edit/#!/your-glitch-project-name)
+
+> **You are currently on the main branch, which only contains this README file. To start the tutorial, switch to the `1-hello-world` branch.**
+
+---
+
+## 🚀 How to Use This Repository
+
+I recommend following along with the tutorial by **writing the code yourself**. If you get stuck, you can always refer back to the code in this repository.
+
+### **Option 1: Run Locally with Git & Node.js**
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+
+
 This repository is designed as a step-by-step tutorial for learning Node.js and Express. Each branch represents a new concept or feature, building upon the previous branches.
 
 >**You are currently on the main branch, which only contains this README file. To start the tutorial, switch to the 1-hello-world branch.**
